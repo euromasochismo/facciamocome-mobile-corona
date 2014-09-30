@@ -5,27 +5,29 @@ settings = {
 	
 	orientation = {
 		default = "portrait",
-		supported = { "portrait", }
+    content = "portrait",
+    supported = { "portrait", "portraitUpsideDown" }
 	},
 	
 	iphone = {
 		plist = {
-			UIStatusBarHidden = false,
-			UIPrerenderedIcon = true, -- set to false for "shine" overlay
+			CFBundleName = "Facciamocome",
+			UIStatusBarHidden = true,
+			UIPrerenderedIcon = false, -- set to false for "shine" overlay
 			--UIApplicationExitsOnSuspend = true, -- uncomment to quit app on suspend
 
             --[[
             -- iOS app URL schemes:
             CFBundleURLTypes =
-            {
-                {
-                    CFBundleURLSchemes =
-                    {
-                        "fbXXXXXXXXXXXXXX", -- example scheme for facebook
-                        "coronasdkapp", -- example second scheme
-                    }
-                }
-            }
+            -- {
+                -- {
+                    -- CFBundleURLSchemes =
+                    -- {
+                        -- "fbXXXXXXXXXXXXXX", -- example scheme for facebook
+                        -- "coronasdkapp", -- example second scheme
+                    -- }
+                --}
+            --}
             --]]
 		}
 	},
