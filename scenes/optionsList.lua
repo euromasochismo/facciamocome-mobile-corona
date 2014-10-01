@@ -13,7 +13,8 @@ local json = require("json")
 local composer = require( "composer" )
 local scene = composer.newScene()
 
-local itemsType, searchField, title, backArrow, msgField, searchStr, results
+local itemsType, searchField, title, backArrow, msgField, results
+local searchStr = ""
 
 local typeStrings = {
 	templates = { titolo = "Imposta una frase" },
@@ -189,7 +190,7 @@ function scene:create( event )
 	-- CAMPO DI RICERCA
 	-- -------------------------------------
 
-	local function getResults( ... )
+	local function getResults()
 		local searchStrPar = url.escape(searchStr)
 		local url = "http://facciamocome.org/app.php?call=get_list_items&type="..itemsType.."&search="..searchStrPar
 		network.request( url, "GET", showResults )
