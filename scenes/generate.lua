@@ -9,6 +9,7 @@ local globals = require( "scripts.globals" )
 local composer = require("composer")
 local widget = require("widget")
 local json = require("json")
+local url = require("socket.url")
 
 local scene = composer.newScene()
 local bg
@@ -78,14 +79,24 @@ function scene:create(event)
 	-- BOTTONE DOWNLOAD
 	-- -------------------------------------
 	local function downloadImage()
-		local function networkListener()
-			-- body
+		local function networkListener(event)
+			if ( event.isError ) then
+				local alert = native.showAlert( "facciamocome", "Errore di rete. Download annullato.", { "OK" } )
+	    elseif ( event.phase == "ended" ) then
+	      -- Salva nelle foto
+				media.save( "facciamocome.png", system.TemporaryDirectory )
+				-- Popup
+				local alert = native.showAlert( "facciamocome", "La frase è stata salvata nella Photo Gallery!", { "OK" } )
+	    end
 		end
+		-- Scarica immagine
 		local params = {}
 		params.progress = true
-		local downloadUrl = "http://facciamocome.org/image.php?template="..globals.FC['templates'].id.."&country="..globals.FC['countries'].id
+		local downloadUrl = "http://facciamocome.org/image.php?nodownload=&phrase="..url.escape(globals.phraseLoaded)
+		print(downloadUrl)
 		network.download(downloadUrl, "GET", networkListener, params, "facciamocome.png", system.TemporaryDirectory)
-		media.save( "facciamocome.png", system.TemporaryDirectory )
+		-- Suono
+		local cameraChannel = audio.play( globals.cameraSound )
 	end
 
 	local btnDownload = widget.newButton {
@@ -159,6 +170,7 @@ function injectPhrase(event)
 		local t = json.decode(event.response)
 		setBackground()
 		phrase.text = t.phrase
+		globals.phraseLoaded = t.phrase
 	end
 end
 

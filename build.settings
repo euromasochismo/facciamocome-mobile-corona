@@ -11,6 +11,62 @@ settings = {
 	
 	iphone = {
 		plist = {
+
+			-- ICONE
+			CFBundleIconFiles = {
+        "Icon.png",
+        "Icon@2x.png",
+        "Icon-60.png",
+        "Icon-60@2x.png",
+        "Icon-60@3x.png",
+        "Icon-72.png",
+        "Icon-72@2x.png",
+        "Icon-76.png",
+        "Icon-76@2x.png",
+        "Icon-Small-40.png",
+        "Icon-Small-40@2x.png",
+        "Icon-Small-40@3x.png",
+        "Icon-Small-50.png",
+        "Icon-Small-50@2x.png",
+        "Icon-Small.png",
+        "Icon-Small@2x.png",
+      	"Icon-Small@3x.png"
+      },
+
+      -- SPLASH
+      UILaunchImages = {
+				{  --iPhone 4
+        	["UILaunchImageMinimumOSVersion"] = "7.0",
+          ["UILaunchImageName"] = "Default",
+          ["UILaunchImageOrientation"] = "Portrait",
+          ["UILaunchImageSize"] = "{320, 480}"
+        },
+        {  --iPhone 5
+        	["UILaunchImageMinimumOSVersion"] = "7.0",
+          ["UILaunchImageName"] = "Default-568h",
+          ["UILaunchImageOrientation"] = "Portrait",
+          ["UILaunchImageSize"] = "{320, 568}"
+        },
+        {  --iPad portrait
+        	["UILaunchImageMinimumOSVersion"] = "7.0",
+          ["UILaunchImageName"] = "Default-Portrait",
+          ["UILaunchImageOrientation"] = "Portrait",
+          ["UILaunchImageSize"] = "{768, 1024}"
+        },
+        {  --iPhone 6
+        	["UILaunchImageMinimumOSVersion"] = "8.0",
+          ["UILaunchImageName"] = "Default-667h",
+          ["UILaunchImageOrientation"] = "Portrait",
+          ["UILaunchImageSize"] = "{375, 667}"
+        },
+        {  --iPhone 6 Plus portrait
+        	["UILaunchImageMinimumOSVersion"] = "8.0",
+          ["UILaunchImageName"] = "Default-736h",
+          ["UILaunchImageOrientation"] = "Portrait",
+          ["UILaunchImageSize"] = "{414, 736}"
+        }
+      },
+			
 			CFBundleName = "Facciamocome",
 			UIStatusBarHidden = true,
 			UIPrerenderedIcon = false, -- set to false for "shine" overlay
@@ -37,6 +93,7 @@ settings = {
 
 	androidPermissions = {
   		"android.permission.INTERNET",
+  		"android.permission.WRITE_EXTERNAL_STORAGE"
   	},
 
 	]]--

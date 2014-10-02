@@ -5,7 +5,7 @@
 -----------------------------------------------------------------------------------------
 
 -- show default status bar (iOS)
-display.setStatusBar(display.DefaultStatusBar)
+display.setStatusBar(display.HiddenStatusBar)
 
 local globals = require( "scripts.globals" )
 
@@ -17,6 +17,11 @@ globals.FC = {
 	templates = { id = 0, testo = 'Random' },
 	countries = { id = 0, testo = 'Random' },
 }
+
+globals.phraseLoaded = ""
+
+-- SUONI
+globals.cameraSound = audio.loadSound( "sounds/camera-shutter-click.wav" )
 
 -- EVENTI BOTTONI TABBAR:
 local function onGenerateView(event)
@@ -33,9 +38,9 @@ end
 
 -- BOTTONI TABBAR:
 local tabButtons = {
-	{ label = "", defaultFile = "img/buttons/generate.png", overFile = "img/buttons/generate.png", width = 32, height = 32, onPress = onGenerateView, selected = true, size = 12},
-	{ label = "", defaultFile = "img/buttons/info.png", overFile = "img/buttons/info.png", width = 32, height = 32, onPress = onInfoView, size = 12},
-	{ label = "", defaultFile = "img/buttons/options.png", overFile = "img/buttons/options.png", width = 32, height = 32, onPress = onOptionsView, size = 12},
+	{ label = "", defaultFile = "img/buttons/generate.png", overFile = "img/buttons/generate.png", width = 38.9, height = 28, onPress = onGenerateView, selected = true, size = 12},
+	{ label = "", defaultFile = "img/buttons/info.png", overFile = "img/buttons/info.png", width = 28, height = 28, onPress = onInfoView, size = 12},
+	{ label = "", defaultFile = "img/buttons/options.png", overFile = "img/buttons/options.png", width = 41.6, height = 28, onPress = onOptionsView, size = 12},
 }
 
 -- TABBAR:
@@ -48,11 +53,11 @@ local tabBar = widget.newTabBar{
 
 titleBarGroup = display.newGroup()
 
-local titleBar = display.newRect( display.contentWidth/2, 40, display.contentWidth, 40 )
+local titleBar = display.newRect( display.contentWidth/2, 20, display.contentWidth, 40 )
 local titleOptions = {
 	text = "FACCIAMOCOME",
 	x = display.contentWidth * 0.5,
-	y = 40,
+	y = 20,
 	width = display.contentWidth,
 	font = native.systemFont,
 	fontSize = 14,

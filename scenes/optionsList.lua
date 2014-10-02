@@ -201,8 +201,11 @@ function scene:create( event )
 			-- user begins editing text field
 			-- print( event.text )
 
-  	elseif ( event.phase == "ended" or event.phase == "submitted" ) then
-  		-- print( searchStr )
+		elseif ( event.phase == "submitted" ) then
+			native.setKeyboardFocus(nil)
+
+		elseif ( event.phase == "ended" ) then
+			print( searchStr )
   		-- Stringa di ricerca troppo corta
 	    if ( string.len( searchStr ) < 4 ) then
 	    	showMsg("La stringa di ricerca deve contenere almeno 4 caratteri!")
@@ -269,8 +272,6 @@ function scene:show( event )
 		removeTableResults()
 		-- AGGIORNA I PARAMETRI
 		itemsType = event.params.itemsType
-		-- MOSTRA IL CAMPO
-		searchField.isVisible = true
 		-- AGGIORNA IL TITOLO
 		title.text = typeStrings[itemsType].titolo
 		-- MOSTRA LA FRECCIA
@@ -284,6 +285,11 @@ function scene:show( event )
 		-- 
 		-- INSERT code here to make the scene come alive
 		-- e.g. start timers, begin animation, play audio, etc.
+
+		-- MOSTRA IL CAMPO
+		searchField.isVisible = true
+		-- Focus sul campo
+		native.setKeyboardFocus( searchField )
 	end	
 end
 
@@ -305,6 +311,8 @@ function scene:hide( event )
 		-- SVUOTA E NASCONDE L'EVENTUALE TABLEVIEW
 		removeTableResults()
 		results = {}
+		-- Nasconde tastiera sul campo
+		native.setKeyboardFocus(nil)
 
 	elseif phase == "did" then
 		-- Called when the scene is now off screen

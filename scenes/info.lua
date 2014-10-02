@@ -24,7 +24,7 @@ function scene:create( event )
 
 	-- LOGO
 	local logo = display.newImage( "img/logo.png" )
-	logo:translate( display.contentWidth * 0.5, 120 )
+	logo:translate( display.contentWidth * 0.5, 100 )
 	
 	-- SOMMARIO
 	local summaryOptions = {
@@ -32,7 +32,7 @@ function scene:create( event )
 	    x = display.contentWidth * 0.5,
 	    width = display.contentWidth - 30,     --required for multi-line and alignment
 	    font = native.systemFont,
-	    fontSize = 14,
+	    fontSize = 13,
 	    align = "center"
 	}
 
@@ -42,7 +42,7 @@ function scene:create( event )
 	-- Set anchor Y on object to 0 (top)
 	summary.anchorY = 0
 	-- Align object to top alignment axis
-	summary.y = 195
+	summary.y = 165
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
