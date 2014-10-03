@@ -56,13 +56,13 @@ function scene:create( event )
 	bg:setFillColor( 1 ) -- white
 
 	-- -------------------------------------
-	-- FRECCIA PER TORNARE ALLE OPZIONI
+	-- FRECCIA PER TORNARE ALLA HOME
 	-- -------------------------------------
 
 	local function backToOptions()
 		composer.gotoScene("scenes.options", {effect = "slideRight"})
 	end
-
+	
 	backArrow = widget.newButton {
 		x = 20,
 		y = 40,

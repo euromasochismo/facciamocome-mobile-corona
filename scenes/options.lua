@@ -126,7 +126,7 @@ function scene:create( event )
 	local btnReset = widget.newButton {
 	    x = display.contentWidth * 0.5,
 	    y = display.contentHeight - 75,
-	    label = "RESET",
+	    label = "RESET IMPOSTAZIONI",
 	    labelColor = { default = { 1 }, over = { 1 } },
 	    width = display.contentWidth - 40,
 	    fontSize = 12,

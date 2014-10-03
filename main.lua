@@ -12,6 +12,7 @@ local globals = require( "scripts.globals" )
 -- include Corona's "widget" library
 local widget = require "widget"
 local composer = require "composer"
+local storyboard = require "storyboard"
 
 globals.FC = {
 	templates = { id = 0, testo = 'Random' },
@@ -38,9 +39,9 @@ end
 
 -- BOTTONI TABBAR:
 local tabButtons = {
-	{ label = "", defaultFile = "img/buttons/generate.png", overFile = "img/buttons/generate.png", width = 38.9, height = 28, onPress = onGenerateView, selected = true, size = 12},
-	{ label = "", defaultFile = "img/buttons/info.png", overFile = "img/buttons/info.png", width = 28, height = 28, onPress = onInfoView, size = 12},
-	{ label = "", defaultFile = "img/buttons/options.png", overFile = "img/buttons/options.png", width = 41.6, height = 28, onPress = onOptionsView, size = 12},
+	{ label = "", defaultFile = "img/buttons/home.png", overFile = "img/buttons/home.png", width = 28, height = 28, onPress = onGenerateView, selected = true},
+	{ label = "", defaultFile = "img/buttons/info.png", overFile = "img/buttons/info.png", width = 28, height = 28, onPress = onInfoView},
+	{ label = "", defaultFile = "img/buttons/options.png", overFile = "img/buttons/options.png", width = 41.6, height = 28, onPress = onOptionsView},
 }
 
 -- TABBAR:
