@@ -59,10 +59,11 @@ function scene:create( event )
 	-- FRECCIA PER TORNARE ALLA HOME
 	-- -------------------------------------
 
-	local function backToOptions()
-		composer.gotoScene("scenes.options", {effect = "slideRight"})
+	local function backToHome()
+		-- composer.gotoScene("scenes.options", {effect = "slideRight"})
+		globals.tabBar:setSelected( 1, true ) 
 	end
-	
+
 	backArrow = widget.newButton {
 		x = 20,
 		y = 40,
@@ -71,7 +72,7 @@ function scene:create( event )
 		id = "backArrow",
 		defaultFile = "img/arrowLeft.png",
 		defaultFile = "img/arrowLeft.png",
-		onPress = backToOptions
+		onPress = backToHome
 	}
 
 	titleBarGroup:insert(backArrow)
@@ -130,7 +131,7 @@ function scene:create( event )
 			globals.FC[itemsType]['id'] = results[id].id
 			globals.FC[itemsType]['testo'] = results[id].testo
 			-- TORNA ALLE OPZIONI
-			backToOptions()
+			backToHome()
 	 	end
 
 	end

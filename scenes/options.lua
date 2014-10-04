@@ -13,6 +13,11 @@ local scene = composer.newScene()
 
 local tableView
 
+local function backToHome()
+		-- composer.gotoScene("scenes.options", {effect = "slideRight"})
+		globals.tabBar:setSelected( 1, true ) 
+	end
+
 function scene:create( event )
 	local sceneGroup = self.view
 	
@@ -121,6 +126,8 @@ function scene:create( event )
 		globals.FC['templates'] = { id = 0, testo = 'Random' }
 		globals.FC['countries'] = { id = 0, testo = 'Random' }
 		tableView:reloadData()
+		backToHome()
+
 	end
 
 	local btnReset = widget.newButton {

@@ -45,7 +45,7 @@ local tabButtons = {
 }
 
 -- TABBAR:
-local tabBar = widget.newTabBar{
+globals.tabBar = widget.newTabBar{
 	top = display.contentHeight - 42,	-- 50 is default height for tabBar widget
 	buttons = tabButtons
 }
