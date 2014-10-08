@@ -14,7 +14,7 @@ local url = require("socket.url")
 local scene = composer.newScene()
 local bg
 local phrase
-local spinner
+local bgSpinner
 
 math.randomseed( os.time() )
 
@@ -57,6 +57,13 @@ function scene:create(event)
 	-- SPINNER
 	-- -------------------------------------
 	-- Qui bisogna fare un imagesheet
+	bgSpinner = display.newRect(0, 0, display.contentWidth, display.contentHeight)
+	bgSpinner.anchorX = 0
+	bgSpinner.anchorY = 0
+	bgSpinner:setFillColor( 0 )
+	bgSpinner.alpha = 0.5
+
+	bgSpinner.isVisible = false
 
 	-- -------------------------------------
 	-- BOTTONE FRASE
@@ -115,6 +122,7 @@ function scene:create(event)
 	sceneGroup:insert(phrase)
 	sceneGroup:insert(btnGenerate)
 	sceneGroup:insert(btnDownload)
+	sceneGroup:insert(bgSpinner)
 end
 
 function scene:show( event )
@@ -158,6 +166,7 @@ end
 -- GENERAZIONE FRASE
 
 function scene:generatePhrase()
+	bgSpinner.isVisible = true
 	local generateUrl = "http://facciamocome.org/generate.php?template="..globals.FC['templates'].id.."&country="..globals.FC['countries'].id
 	-- print(generateUrl)
 	network.request( generateUrl, "GET", injectPhrase )
@@ -172,6 +181,7 @@ function injectPhrase(event)
 		phrase.text = t.phrase
 		globals.phraseLoaded = t.phrase
 	end
+	bgSpinner.isVisible = false
 end
 
 -- GENERAZIONE SFONDO
