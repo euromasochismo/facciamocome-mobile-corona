@@ -14,3 +14,5 @@ application = {
       },
    },
 }
+
+-- if (system.getInfo("platformName") == "Android") then

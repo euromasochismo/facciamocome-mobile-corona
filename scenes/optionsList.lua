@@ -198,42 +198,50 @@ function scene:create( event )
 	end
 
 	local function textListener( event )
-  	if ( event.phase == "began" ) then
-			-- user begins editing text field
-			-- print( event.text )
+	  	if ( event.phase == "began" ) then
+				-- user begins editing text field
+				-- print( event.text )
 
-		elseif ( event.phase == "submitted" ) then
-			native.setKeyboardFocus(nil)
+			elseif ( event.phase == "submitted" ) then
+				native.setKeyboardFocus(nil)
 
-		elseif ( event.phase == "ended" ) then
-			print( searchStr )
-  		-- Stringa di ricerca troppo corta
-	    if ( string.len( searchStr ) < 4 ) then
-	    	showMsg("La stringa di ricerca deve contenere almeno 4 caratteri!")
-	    else
-	    	getResults()
-	    end
+			elseif ( event.phase == "ended" ) then
+				print( searchStr )
+	  		-- Stringa di ricerca troppo corta
+		    if ( string.len( searchStr ) < 4 ) then
+		    	showMsg("La stringa di ricerca deve contenere almeno 4 caratteri!")
+		    else
+		    	getResults()
+		    end
 
-  	elseif ( event.phase == "editing" ) then
-  		searchStr = ( event.text )
-    	-- print( event.newCharacters )
-      -- print( event.oldText )
-      -- print( event.startPosition )
-      -- print( event.text )
-  	end
+	  	elseif ( event.phase == "editing" ) then
+	  		searchStr = ( event.text )
+	    	-- print( event.newCharacters )
+	      -- print( event.oldText )
+	      -- print( event.startPosition )
+	      -- print( event.text )
+	  	end
 	end
 
-	-- Crea il campo
-	searchField = native.newTextField( display.contentWidth * 0.5, 130, display.contentWidth - 50, 20 )
+	-- Crea il campo (ha altezze diverse in iOS o Android!)
+	local fieldHeight
+	if (system.getInfo("platformName") == "Android") then
+		fieldHeight = 35
+	else
+		fieldHeight = 20
+	end
+
+	searchField = native.newTextField( display.contentWidth * 0.5, 130, display.contentWidth - 40, fieldHeight )
 	searchField.size = 14
+
 	searchField.placeholder = "Cerca..."
 	searchField:addEventListener( "userInput", textListener )
 
-	-- Crea il bordo del campo
-	local borderField = display.newRoundedRect( display.contentWidth * 0.5, 130, display.contentWidth - 35, 40, 5 )
-	borderField:setFillColor( 1 ) 
-	borderField:setStrokeColor( 0, 0.5 )
-	borderField.strokeWidth = 1
+	-- Crea il bordo del campo (ma non lo usa)
+	-- local borderField = display.newRoundedRect( display.contentWidth * 0.5, 130, display.contentWidth - 35, 40, 5 )
+	-- borderField:setFillColor( 1 ) 
+	-- borderField:setStrokeColor( 0, 0.5 )
+	-- borderField.strokeWidth = 1
 
 	-- -------------------------------------
 	-- MESSAGGIO
@@ -258,7 +266,7 @@ function scene:create( event )
 	sceneGroup:insert( bg )
 	sceneGroup:insert( title )
 	sceneGroup:insert( searchField )
-	sceneGroup:insert( borderField )
+	-- sceneGroup:insert( borderField )
 	sceneGroup:insert( msgField )
 end
 

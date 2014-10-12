@@ -46,8 +46,14 @@ local tabButtons = {
 
 -- TABBAR:
 globals.tabBar = widget.newTabBar{
-	top = display.contentHeight - 42,	-- 50 is default height for tabBar widget
-	buttons = tabButtons
+	top = display.contentHeight - 50,	-- 50 is default height for tabBar widget
+	buttons = tabButtons,
+	backgroundFile = "img/tabbar/background.png",
+	tabSelectedLeftFile = "img/tabbar/1x1.png",
+    tabSelectedMiddleFile = "img/tabbar/1x1.png",
+    tabSelectedRightFile = "img/tabbar/1x1.png",
+    tabSelectedFrameWidth = 20,
+    tabSelectedFrameHeight = 42, 
 }
 
 -- TITLE BAR (GLOBALE per farla vedere nelle scenes)
